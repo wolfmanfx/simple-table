@@ -1,0 +1,22 @@
+<table>
+  <thead>
+    <tr>
+      @for(column of columnDefs(); track column) {
+      <th>{{ column.headerName() }}</th>
+      }
+    </tr>
+  </thead>
+  <tbody>
+    @for(row of data(); track row) {
+    <tr>
+      @for(column of columnDefs(); track column) {
+      <td>
+        <ng-container *ngTemplateOutlet="
+              column.templateRef;
+              context: { $implicit: row[column.propName()], rowData: row }" />
+      </td>
+      }
+    </tr>
+    }
+  </tbody>
+</table>

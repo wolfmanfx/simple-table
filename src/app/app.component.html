@@ -1,0 +1,24 @@
+<app-table [data]="users">
+
+  @if(showId()) {
+    <ng-container *appTableColumn=" let data=rowData;  headerName: 'Id'">
+      {{ data.id }}
+    </ng-container>
+  }
+
+  <ng-container *appTableColumn="let data;  as: 'name'; headerName: 'Name'">
+    {{ data }}
+  </ng-container>
+
+  <ng-container *appTableColumn="let data; as: 'date'; headerName: 'Date'">
+    <app-date-column [date]="data" />
+  </ng-container>
+
+  <ng-container *appTableColumn="let data; let row=rowData; headerName: 'Actions'">
+    <div class="flex gap-x-4">
+      <button (click)="hide(row)">Hide </button>
+      <button (click)="show(row)">Show</button>
+    </div>
+  </ng-container>
+
+</app-table>
